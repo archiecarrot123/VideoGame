@@ -2,7 +2,7 @@ import time
 
 # Functions
 
-def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, playerHealth, maxPlayerHealth):
+def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, enemyRegen, playerHealth, maxPlayerHealth):
     enemyHealth = maxEnemyHealth
     playerAttack = 3
     while enemyHealth > 0:
@@ -18,8 +18,12 @@ def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, playerHealth, maxPlaye
             print("error: not implemented yet")
         else:
             print("What? You do nothing as you pressed " + action.lower())
-        playerHealth = playerHealth - enemyAttack
-        print(creature + "'s attack deals " + str(enemyAttack) + " damage")
+        if creatureAI(creature, enemyHealth) == "a":
+            playerHealth = playerHealth - enemyAttack
+            print(creature + "'s attack deals " + str(enemyAttack) + " damage")
+        else:
+            enemyHealth = enemyHealth + 1
+            print(creature + " crouches and regenerates " + str(1) + " health")
         time.sleep(1)
     if enemyHealth <= 0:
         print("You beat the " + creature)
@@ -27,6 +31,16 @@ def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, playerHealth, maxPlaye
     else:
         print("ERROR IN HEALTH CALCULATION" + str(enemyHealth))
         return("You lose")
+
+def creatureAI(creature, creatureHealth):
+    if creature == "goblin":
+        if creatureHealth >= 5:
+            return("a")
+        elif creatureHealth > 1:
+            return("c")
+        else:
+            return("a")
+
 
 # Main code
 
@@ -42,12 +56,12 @@ if mode.lower() == "p":
 else:
     print("Random")
     p = False
-print('Tutorial')
+print("Tutorial")
 maxPlayerHealthMain = 20
 playerHealthMain = maxPlayerHealthMain
-playerHealthMain = attackOrCrouch("goblin", 10, 1, playerHealthMain, maxPlayerHealthMain)
+playerHealthMain = attackOrCrouch("goblin", 10, 1, 1, playerHealthMain, maxPlayerHealthMain)
 if playerHealthMain > 0:
-    print("You win. This is the end of this <60 line game")
+    print("You win. This is the end of this <75 line game")
     print("Your health was: " + str(playerHealthMain) + " / " + str(maxPlayerHealthMain))
 else:
     print("You lose. How?")
