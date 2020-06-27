@@ -12,7 +12,7 @@ def attackOrCrouch(creature, enemyHealth):
             print("error: not implemented yet")
         else:
             print("What?")
-    if enemyHealth <= 0:
+    if curEnemyHealth <= 0:
         print("You beat the " + creature)
         return(True)
     else:
