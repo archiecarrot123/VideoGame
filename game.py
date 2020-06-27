@@ -1,14 +1,13 @@
-import pygame
-
 def attackOrCrouch(creature, enemyHealth):
-    while enemyHealth > 0:
+    curEnemyHealth = enemyHealth
+    while curEnemyHealth > 0:
         print("A " + creature + " attacks!")
-        print(creature + "'s Health " + str(enemyHealth))
+        print(creature + "'s Health " + str(curEnemyHealth) + " / " + str(enemyHealth))
         print(name + "'s Health " + "placeholder")
         print("Attack, or Crouch?")
         action = input("(a/c)? ")
         if action.lower() == "a":
-            enemyHealth = enemyHealth - 3
+            curEnemyHealth = curEnemyHealth - 3
         elif action.lower() == "c":
             print("error: not implemented yet")
         else:
@@ -17,7 +16,7 @@ def attackOrCrouch(creature, enemyHealth):
         print("You beat the " + creature)
         return(True)
     else:
-        print("ERROR IN HEALTH CALCULATION" + enemyHealth)
+        print("ERROR IN HEALTH CALCULATION" + str(curEnemyHealth))
         return(False)
 
 name = input("What is your name? ")
