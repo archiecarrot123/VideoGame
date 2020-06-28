@@ -1,4 +1,5 @@
 import time
+import creatureAI as AI
 
 # Functions
 
@@ -18,7 +19,7 @@ def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, enemyRegen, playerHeal
             print("error: not implemented yet")
         else:
             print("What? You do nothing as you pressed " + action.lower())
-        if creatureAI(creature, enemyHealth) == "a":
+        if AI.creatureAI(creature, enemyHealth) == "a":
             playerHealth = playerHealth - enemyAttack
             print(creature + "'s attack deals " + str(enemyAttack) + " damage")
         else:
@@ -31,15 +32,6 @@ def attackOrCrouch(creature, maxEnemyHealth, enemyAttack, enemyRegen, playerHeal
     else:
         print("ERROR IN HEALTH CALCULATION" + str(enemyHealth))
         return("You lose")
-
-def creatureAI(creature, creatureHealth):
-    if creature == "goblin":
-        if creatureHealth >= 5:
-            return("a")
-        elif creatureHealth > 1:
-            return("c")
-        else:
-            return("a")
 
 
 # Main code
